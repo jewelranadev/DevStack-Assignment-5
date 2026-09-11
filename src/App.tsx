@@ -1,5 +1,6 @@
 import NavBar from './component/NavBar'
 import Hero from './component/Hero'
+import TechnologySection from './component/TechnologySection'
 
 function App() {
  
@@ -8,6 +9,7 @@ function App() {
     <>
       <NavBar/>
       <Hero/>
+      <TechnologySection/>
     </>
   )
 }
