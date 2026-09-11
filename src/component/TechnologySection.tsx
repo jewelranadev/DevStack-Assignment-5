@@ -1,6 +1,16 @@
-import React from 'react'
 
-export default function TechnologySection() {
+
+import type { TechType } from './techType';
+
+interface TechProps {
+    technologyPromise : Promise<TechType[]>
+}
+export default function TechnologySection({ technologyPromise }: TechProps) {
+
+
+    console.log(technologyPromise );
+    
+
   return (
     <section className='mx-auto max-w-7xl px-4 py-16'>
         <div>
@@ -12,7 +22,7 @@ export default function TechnologySection() {
             </p>
         </div>
         <div className='mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
-
+       
         </div>
     </section>
   )
