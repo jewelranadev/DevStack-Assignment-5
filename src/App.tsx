@@ -1,6 +1,7 @@
 import NavBar from './component/NavBar'
 import Hero from './component/Hero'
 import TechnologySection from './component/TechnologySection'
+import Footer from './component/Footer'
 import { Suspense } from 'react'
 import type { TechType } from './component/techType'
 
@@ -21,7 +22,7 @@ function App() {
       <Suspense fallback={<h2>Loading..........</h2>}>
         <TechnologySection technologyPromise={technologyPomise} />
       </Suspense>
-      
+      <Footer/>
     </>
   )
 }
