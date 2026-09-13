@@ -6,12 +6,21 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-        <img
-          className="h-8 w-auto"
-          src="/src/assets/logo-text.png"
-          alt="logo"
-        />
+      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+          <img
+            className="h-8 w-auto"
+            src="/src/assets/logo-text.png"
+            alt="logo"
+          />
+        </div>
 
         <ul className="hidden items-center gap-8 md:flex">
           <li>
@@ -60,22 +69,15 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <button className="rounded-lg border border-gray-300 px-5 py-2 font-semibold text-gray-700 transition hover:bg-gray-100">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <button className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs font-semibold text-gray-700 transition hover:bg-gray-100 sm:px-3 sm:py-2 sm:text-sm md:px-5">
             Sign In
           </button>
 
-          <button className="rounded-lg bg-blue-600 px-5 py-2 font-semibold text-white shadow-md transition hover:scale-105 hover:bg-blue-700">
+          <button className="rounded-lg bg-blue-600 px-2 py-1.5 text-xs font-semibold text-white shadow-md transition hover:scale-105 hover:bg-blue-700 sm:px-3 sm:py-2 sm:text-sm md:px-5">
             Sign Up
           </button>
         </div>
-
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 md:hidden"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
       </nav>
 
       {isOpen && (
@@ -126,16 +128,6 @@ export default function Navbar() {
               </a>
             </li>
           </ul>
-
-          <div className="mt-6 flex flex-col gap-3">
-            <button className="w-full rounded-lg border border-gray-300 px-5 py-2 font-semibold text-gray-700">
-              Sign In
-            </button>
-
-            <button className="w-full rounded-lg bg-blue-600 px-5 py-2 font-semibold text-white">
-              Sign Up
-            </button>
-          </div>
         </div>
       )}
     </div>
