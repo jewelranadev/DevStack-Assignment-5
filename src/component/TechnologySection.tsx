@@ -13,18 +13,24 @@ export default function TechnologySection({ technologyPromise }: TechProps) {
     [],
   );
 
-const handleAddToStack = (technology: TechType) => {
-  setSelectedTechnologies((prev) => {
-    if (prev.some((item) => item.id === technology.id)) {
-      return prev;
-    }
-    return [...prev, technology];
-  });
-};
+  const handleAddToStack = (technology: TechType) => {
+    setSelectedTechnologies((prev) => {
+      if (prev.some((item) => item.id === technology.id)) {
+        return prev;
+      }
+
+      return [...prev, technology];
+    });
+  };
+
   const handleRemoveFromStack = (id: string) => {
     setSelectedTechnologies((prev) =>
       prev.filter((technology) => technology.id !== id),
     );
+  };
+
+  const handleRemoveAll = () => {
+    setSelectedTechnologies([]);
   };
 
   return (
@@ -42,8 +48,8 @@ const handleAddToStack = (technology: TechType) => {
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {technologies.map((technology) => (
             <TechnologyCard
               key={technology.id}
@@ -56,28 +62,55 @@ const handleAddToStack = (technology: TechType) => {
 
         <div>
           <div className="sticky top-24 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold text-gray-800">Your Stack</h2>
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-bold text-gray-800">Your Stack</h2>
+
+                <p className="mt-1 text-sm text-gray-500">
+                  {selectedTechnologies.length}{" "}
+                  {selectedTechnologies.length === 1
+                    ? "Technology"
+                    : "Technologies"}{" "}
+                  Selected
+                </p>
+              </div>
+
+              {selectedTechnologies.length > 0 && (
+                <button
+                  onClick={handleRemoveAll}
+                  className="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
+                >
+                  Remove All
+                </button>
+              )}
+            </div>
 
             {selectedTechnologies.length === 0 ? (
-              <p className="mt-2 text-sm text-gray-500">
-                No Technology Selected Yet
-              </p>
+              <div className="mt-6 rounded-lg bg-gray-50 p-4 text-center">
+                <p className="text-sm text-gray-500">
+                  No Technology Selected Yet
+                </p>
+
+                <p className="mt-2 text-sm text-gray-400">
+                  Your Stack is Empty
+                </p>
+              </div>
             ) : (
-              <div className="mt-4 space-y-3">
+              <div className="mt-5 space-y-3">
                 {selectedTechnologies.map((technology) => (
                   <div
                     key={technology.id}
-                    className="flex items-center justify-between rounded-lg border border-gray-100 p-3"
+                    className="flex items-center justify-between gap-2 rounded-lg border border-gray-100 p-3"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <img
                         src={technology.icon}
                         alt={technology.name}
-                        className="h-10 w-10 object-contain"
+                        className="h-9 w-9 shrink-0 object-contain"
                       />
 
-                      <div>
-                        <h3 className="font-semibold text-gray-800">
+                      <div className="min-w-0">
+                        <h3 className="truncate text-sm font-semibold text-gray-800">
                           {technology.name}
                         </h3>
 
@@ -89,7 +122,7 @@ const handleAddToStack = (technology: TechType) => {
 
                     <button
                       onClick={() => handleRemoveFromStack(technology.id)}
-                      className="text-xs font-semibold text-red-500 hover:text-red-700"
+                      className="shrink-0 text-xs font-semibold text-red-500 transition hover:text-red-700"
                     >
                       Remove
                     </button>
