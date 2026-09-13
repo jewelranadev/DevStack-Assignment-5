@@ -1,4 +1,4 @@
-import logoText from "../assets/logo-text.png;
+import logoText from "../assets/logo-text.png";
 export default function Footer() {
   return (
     <footer className="mt-20 border-t border-gray- text-[#64748B]">
