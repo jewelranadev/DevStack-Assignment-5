@@ -1,16 +1,33 @@
 import type { TechType } from "./techType";
 
+
 interface TechnologyCardProps {
   technology: TechType;
+  handleAddToStack: (technology: TechType) => void;
+  selectedTechnologies: TechType[];
 }
 
-export default function TechnologyCard({ technology }: TechnologyCardProps) {
-  return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative mb-4 flex h-12 items-center justify-between rounded-lg bg-gray-100">
-        <img className="h-8 w-8" src={technology.icon} alt={technology.name} />
+export default function TechnologyCard({
+  technology,
+  handleAddToStack,
+  selectedTechnologies,
+}: TechnologyCardProps) {
+  const isSelected = selectedTechnologies.some(
+  (item) => item.id === technology.id,
+);
 
-        <span className="absolute -right-6 -top-2 rounded-full bg-pink-100 px-2 py-1 text-xs font-semibold text-pink-500">
+const disabled = isSelected;
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="relative mb-4 flex h-12 items-center rounded-lg bg-gray-100 px-3">
+        <img
+          src={technology.icon}
+          alt={technology.name}
+          className="h-8 w-8 object-contain"
+        />
+
+        <span className="absolute -right-2 -top-2 rounded-full bg-pink-100 px-2 py-1 text-xs font-semibold text-pink-500">
           {technology.badge}
         </span>
       </div>
@@ -37,8 +54,16 @@ export default function TechnologyCard({ technology }: TechnologyCardProps) {
         </span>
       </div>
 
-      <button className="w-full rounded-lg bg-[#0A0F1D] py-2 text-sm font-semibold text-white transition duration-300 hover:bg-gray-800">
-        Add to Stack
+      <button
+        onClick={() => handleAddToStack(technology)}
+        disabled={disabled}
+        className={`w-full rounded-lg py-2 text-sm font-semibold text-white ${
+          isSelected
+            ? "cursor-default bg-green-600"
+            : "bg-[#0A0F1D] hover:bg-gray-800"
+        }`}
+      >
+        {isSelected ? "Added to Stack" : "Add to Stack"}
       </button>
     </div>
   );
