@@ -1,3 +1,4 @@
+import logoText from "../assets/logo-text.png;
 export default function Footer() {
   return (
     <footer className="mt-20 border-t border-gray- text-[#64748B]">
@@ -6,7 +7,7 @@ export default function Footer() {
           <div>
             
             <img 
-            className="h-8 w-auto" src="../src/assets/logo-text.png" alt="" />
+            className="h-8 w-auto" src={logoText} alt="Logo" />
             
             
 
