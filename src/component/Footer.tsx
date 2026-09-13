@@ -6,7 +6,7 @@ export default function Footer() {
           <div>
             
             <img 
-            className="h-8 w-auto" src="/src/assets/logo-text.png" alt="" />
+            className="h-8 w-auto" src="../src/assets/logo-text.png" alt="" />
             
             
 
