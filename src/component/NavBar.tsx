@@ -17,7 +17,7 @@ export default function Navbar() {
         <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
           <img
             className="h-8 w-auto"
-            src="/src/assets/logo-text.png"
+            src="../src/assets/logo-text.png"
             alt="logo"
           />
         </div>
