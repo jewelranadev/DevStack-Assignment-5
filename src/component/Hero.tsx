@@ -33,7 +33,7 @@ export default function Hero() {
           </button>
         </div>
       </div>
-      <img src="/src/assets/banner-stack.png" alt="hero image" />
+      <img src="../src/assets/banner-stack.png" alt="hero image" />
     </div>
   );
 }
