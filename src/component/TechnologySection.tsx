@@ -1,6 +1,7 @@
 import { use, useState } from "react";
 import TechnologyCard from "./TechnologyCard";
 import type { TechType } from "./techType";
+import { toast } from "react-toastify";
 
 interface TechProps {
   technologyPromise: Promise<TechType[]>;
@@ -14,23 +15,38 @@ export default function TechnologySection({ technologyPromise }: TechProps) {
   );
 
   const handleAddToStack = (technology: TechType) => {
-    setSelectedTechnologies((prev) => {
-      if (prev.some((item) => item.id === technology.id)) {
-        return prev;
-      }
+    const isAlreadyAdded = selectedTechnologies.some(
+      (item) => item.id === technology.id,
+    );
 
-      return [...prev, technology];
-    });
+    if (isAlreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack!`);
+      return;
+    }
+
+    setSelectedTechnologies((prev) => [...prev, technology]);
+
+    toast.success(`${technology.name} added to your stack!`);
   };
 
   const handleRemoveFromStack = (id: string) => {
+    const technologyToRemove = selectedTechnologies.find(
+      (technology) => technology.id === id,
+    );
+
     setSelectedTechnologies((prev) =>
       prev.filter((technology) => technology.id !== id),
     );
+
+    if (technologyToRemove) {
+      toast.error(`${technologyToRemove.name} removed from your stack!`);
+    }
   };
 
   const handleRemoveAll = () => {
     setSelectedTechnologies([]);
+
+    toast.info("All technologies removed from your stack!");
   };
 
   return (
@@ -38,7 +54,7 @@ export default function TechnologySection({ technologyPromise }: TechProps) {
       <div>
         <h2 className="text-4xl font-extrabold md:text-5xl">
           Explore{" "}
-          <span className="bg-linear-to-r from-[#EC4899] to-[#8B5CF6] bg-clip-text text-transparent">
+          <span className="brand-gradient bg-clip-text text-transparent">
             The Technologies
           </span>
         </h2>

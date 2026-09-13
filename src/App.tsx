@@ -4,6 +4,7 @@ import TechnologySection from './component/TechnologySection'
 import Footer from './component/Footer'
 import { Suspense } from 'react'
 import type { TechType } from './component/techType'
+import { ToastContainer } from 'react-toastify'
 
 
 const technologyFetch = async ():Promise<TechType[]> => {
@@ -19,10 +20,11 @@ function App() {
     <>
       <NavBar/>
       <Hero/>
-      <Suspense fallback={<h2>Loading..........</h2>}>
+      <Suspense fallback={<h2 className="mt-4 text-gray-500">Loading..........</h2>}>
         <TechnologySection technologyPromise={technologyPomise} />
       </Suspense>
       <Footer/>
+      <ToastContainer position='top-right' autoClose={2000} />
     </>
   )
 }

@@ -51,16 +51,15 @@ export default function TechnologyCard({
       </div>
 
       <button
-        onClick={() => handleAddToStack(technology)}
-        disabled={isAdded}
-        className={`mt-5 w-full rounded-lg px-4 py-3 font-semibold transition ${
-          isAdded
-            ? "cursor-not-allowed bg-gray-200 text-gray-500"
-            : "bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-white hover:scale-[1.02]"
-        }`}
-      >
-        {isAdded ? "✓ Added to Stack" : "+ Add to Stack"}
-      </button>
+  onClick={() => handleAddToStack(technology)}
+  className={`mt-5 w-full rounded-lg px-4 py-3 font-semibold transition ${
+    isAdded
+      ? "bg-gray-200 text-gray-500"
+      : "brand-gradient text-white hover:scale-[1.02]"
+  }`}
+>
+  {isAdded ? "✓ Added to Stack" : "+ Add to Stack"}
+</button>
     </div>
   );
 }

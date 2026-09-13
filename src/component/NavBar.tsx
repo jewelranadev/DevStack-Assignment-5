@@ -1,4 +1,3 @@
-import logoText from "../assets/logo-text.png";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -16,11 +15,9 @@ export default function Navbar() {
         </button>
 
         <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-          <img
-            className="h-8 w-auto"
-            src={logoText}
-            alt="logo"
-          />
+          <h1 className="brand-gradient bg-clip-text text-2xl font-bold text-transparent">
+            DevStack
+          </h1>
         </div>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -75,7 +72,7 @@ export default function Navbar() {
             Sign In
           </button>
 
-          <button className="rounded-lg bg-blue-600 px-2 py-1.5 text-xs font-semibold text-white shadow-md transition hover:scale-105 hover:bg-blue-700 sm:px-3 sm:py-2 sm:text-sm md:px-5">
+          <button className="brand-gradient rounded-lg px-2 py-1.5 text-xs font-semibold text-white shadow-md transition hover:scale-105 sm:px-3 sm:py-2 sm:text-sm md:px-5">
             Sign Up
           </button>
         </div>
